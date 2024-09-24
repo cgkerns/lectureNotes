@@ -1,4 +1,4 @@
-HW 2 due Tuesday, September 3
+thursAug29_notes.txtHW 2 due Tuesday, September 3
 
 --> will be creating 2 image files
 
@@ -147,7 +147,16 @@ if (x <= 2 || y >= 0) {
 
 How could we write what our if-statement is doing?
 
+If I meet all my conditions, then the answer is 25
+
 Propositional atoms/translation?
+
+p: x <= 2,
+q: y >= 0,
+r: z == 17
+s: answer = 25
+
+(p || q) && !r -> s
 
 
 
@@ -156,7 +165,7 @@ Propositional atoms/translation?
 
 --> what must be true if answer is NOT 25?
 
-
+!s -> r && !(p || q) = r || !p && !q
 
 
 
@@ -209,7 +218,7 @@ if (a == 4 || a == 5) {
 How could we express the NEGATION
 (i.e., what condition would be true for the "else")?
 
-
+if (a != 4 && a != 5)
 
 
 
@@ -232,9 +241,10 @@ How could we express the NEGATION
 DeMorgan's laws in propositional logic:
 
 ¬(p ∨ q) is equivalent to...
+!p ^ !q
 
 ¬(p ∧ q) is equivalent to...
-
+!p v !q
 
 --> how can we prove the first of DeMorgan's laws?
 
@@ -252,7 +262,7 @@ if (Character.isDigit(letter) == true || num < 10) {
 
 --> how would we negate it without using a ! operator?
 
-
+Character.isDigit(letter) == false && num >= 10
 
 
 
@@ -266,7 +276,7 @@ if ((y >= 4 && num != 14) || x > 0) {
 }
 
 negate it:
-
+(y < 4 || num == 14) && x <= 0
 
 
 
@@ -318,6 +328,8 @@ What is equivalent to:
 
 ¬p → q
 
+p v q
+
 
 //////////////////////////
 
@@ -326,7 +338,12 @@ are these equivalent?
     (p → q) → r
     p → (q → r)
 
+to show they are not equivalent, just need one
+truth assignment where the output differs
 
+p = F
+q = T/F
+r = F
 
 
 
@@ -334,6 +351,8 @@ are these equivalent?
 
 
 In general, how to show statements are NOT equivalent?
+
+just need 1 truth assignment
 
 /////////////////////////
 
