@@ -6,17 +6,18 @@ import org.sireum.justification._
 import org.sireum.justification.natded.pred._
 import org.sireum.justification.natded.prop._
 
-@pure def all1[T](inCIS301: T=>B @pure, takenCIS200: T=>B @pure, Bob: T): Unit = {
+// ∀ x (P(x) __>: Q(x)) |- ∀ x (!Q(x) __>: !P(x))
+
+@pure def all3[T](P: T=>B @pure, Q: T=>B @pure): Unit = {
   Deduce(
     //@formatter: off
 
     (
-      ∀((x: T) => (inCIS301(x) __>: takenCIS200(x))),
-      inCIS301(Bob)
+      ∀((x: T) => (P(x) __>: Q(x)))
     )
-  |-
+      |-
     (
-      takenCIS200(Bob)
+       ∀((x: T) => (!Q(x) __>: !P(x)))
     )
     Proof(
 
