@@ -13,7 +13,7 @@ import org.sireum.justification.natded.prop._
     //@formatter: off
 
     (
-      !(∀((x: T) => (Human(x) __>: Mortal(x)))),
+      (∀((x: T) => (Human(x) __>: Mortal(x)))),
       ∃((x: T) => Human(x))
     )
     |-
@@ -21,9 +21,15 @@ import org.sireum.justification.natded.prop._
       ∃((x: T) => Mortal(x))
     )
     Proof(
-      1 ( !(∀((x: T) => (Human(x) __>: Mortal(x)))) ) by Premise,
+      1 ( (∀((x: T) => (Human(x) __>: Mortal(x)))) ) by Premise,
       2 ( ∃((x: T) => Human(x)) ) by Premise,
-
+      3 Let ((bob : T) => SubProof(
+        4 Assume(Human(bob)),
+        5 ( Human(bob) __>: Mortal(bob)) by AllE[T](1),
+        6 (Mortal(bob) by ImplyE(5, 4)),
+        7 (∃((x: T) => Mortal(x))) by ExistsI[T](6),
+      )) //goal: ∃((x: T) => Mortal(x))
+      8 ((∃((x: T) => Mortal(x)))) by ExistsE[T](2, 3),
     )
     //@formatter:on
   )

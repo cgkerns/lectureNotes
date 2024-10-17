@@ -108,15 +108,24 @@ x is students
 Proof tactics for predicate logic
 
 - see if you can do anything right away with the premises
-    Which rules?
+    Which rules? AndE, ImplyE, AllE, ExistsI
 
 - look at top-level operator for what you are trying to prove
     trying to prove a "for all" statement with ∀?
-
+    subproof with let, introduce random individual
+        try to prove our goal about that random individual
+    (AllI)
 
     trying to prove a "there exists" statement with ∃?
+        need to show it's true for one
+        do I have that statements about a particular individual?
 
+        could I use AllE about a particular individual
 
+        do I have a "there exists" statement as a premise?
+            try ExistsE on that premise to get your conclusion
+
+        really cant find anything? try PbC
     trying to prove an implies?
 
 

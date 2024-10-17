@@ -21,8 +21,20 @@ import org.sireum.justification.natded.prop._
     )
       Proof(
       1 ( !(∃((x: T) => (P(x) & Q(x)))) ) by Premise,
-
-
+      2 Let((a: T) =>SubProof(
+        3 SubProof(
+          4 Assume(P(a)),
+          5 SubProof(
+            6 Assume(Q(a)),
+            7 (P(a) & Q(a)) by AndI(4, 6),
+            8 ((∃((x: T) => (P(x) & Q(x))))) by ExistsI[T](7),
+            9 (F) by NegE(8, 1),
+          ),
+          10 (!Q(a)) by NegI(5),
+        ),
+        11 (P(a) __>: !Q(a)) by ImplyI(3),
+      )),
+      12 (∀((x: T) => (P(x)) __>: !Q(x))) by AllI[T](2)
     )
     //@formatter:on
   )
