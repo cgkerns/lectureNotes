@@ -27,9 +27,15 @@ import org.sireum.justification.natded.prop._
         3 Assume( ∃((x: T) => P(x)) ),
 
         //now what can we do with line 3?
-
+        4 Let ((alias: T) => SubProof(
+          5 Assume(P(alias)),
+          6 ((!P(alias))) by AllE[T](1),
+          7 (F) by NegE(5, 6),
+        )),
+        8 (F) by ExistsE[T](3, 4),
         //goal: F
-      )
+      ),
+      9 (!(∃((x: T) => P(x)))) by NegI(2)
     )
     //@formatter:on
   )

@@ -27,20 +27,20 @@ Proving DeMorgan's laws
 Soundness and completeness of predicate logic.
 
 
-Soundness: definition?
+Soundness: everything we can prove (with natural deduction) is actually true
 
-    propositional:
+    propositional: sound
 
-    predicate logic:
-
-
+    predicate logic: sound
 
 
-Completeness: definition?
 
-    propositional:
 
-    predicate logic:
+Completeness: everything that is true can be proved
+
+    propositional: complete
+
+    predicate logic: incomplete
 
 
 
@@ -58,7 +58,7 @@ Domain with integers with operations like +
 All integers? 2 + 3 = ?
 
 
-Subset (0,1,2,3,4) of integers. 2 + 3 = ?
+Subset (0,1,2,3,4) of integers. 2 + 3 = 0
 
 
 
@@ -115,10 +115,10 @@ Try it out first.
 
 Let P(n) be the claim that...?
 
-LHS(n) = ?
-RHS(n) = ?
+LHS(n) = 1 + 2 + .. + n
+RHS(n) = n *(n + 1)/2
 
-So to show P(n) holds, we can show that...?
+So to show P(n) holds, we can show that...LHS(n) = RHS(n)
 
 
 
@@ -127,11 +127,20 @@ So to show P(n) holds, we can show that...?
 Proof by induction.
 
 
-Base case:
+Base case: We must show that P(n) holds for the smallest positive integer n. So, we must show
+P(1). We have that LHS(1) = 1 and RHS(1) = 1(1+1)/2 = 1, so LHS(1) = RHS(1). The base case
+holds.
 
 
 Inductive step:
-
+We assume the inductive hypothesis --
+that LHS(k) = RHS(k) for some positive integer k. We must show that LHS(k+1) = RHS(k+1).
+We hae that:
+    LHS(k+1) = 1 + 2 + ... + k + (k + 1)
+             = LHS(k) + (k + 1)
+             = RHS(k) + (k + 1)
+             = k(k+1)/2 + (k + 1)
+            ... = RHS(k+1)
 
 
 /////////////////////////////////
@@ -170,8 +179,20 @@ n = 3?
 
 what does "even" mean?
 
+2 * some integer
+even number + even number = even number
 
+Base case. We must show that P(n) holds for the smallest positive integer n, which is
+1. We have that 3^1 - 1 = 2, which is even, The base case holds.
 
+Inductive step. We assume the inductive hypothesis - that P(k) holds for some positive
+integer k. We must show that P(k + 1) is true
+
+Since P(k) holds, we have that 3^k - 1 is even. We must who that 3^(k+1) - 1 is even.
+
+3^(k+1)-1
+3*3^k - 1
+3(3^k - 1) + 2
 
 //////////////////////////////////
 
