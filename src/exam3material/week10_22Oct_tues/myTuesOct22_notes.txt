@@ -98,6 +98,20 @@ RHS(n) = ?
 
 Proof by induction.
 
+Base case.
+
+Inductive step. We assume the inductive hypothesis -- that P(k) is true from some
+positive integer k. If P(k) is true, then LHS(k) = RHS(k). We must show that
+P(k+1) is true, or that LHS(k+1) = RHS(k+1). We have that:
+    LHS(k+1) = 1 + 3 + ... + (2(k+1)-1)
+    =LHS(k) + 2(k+1)-1
+    =RHS(k) + 2(k+1) - 1
+    = k^2 + 2(k+1) - 1
+    = (k+1)(k+1)
+    =(k+1)^2
+    = RHS(k+1)
+
+WE have that LHS
 
 ////////////////////////////////
 
@@ -105,13 +119,29 @@ Let P(n) be the claim that for all nonnegative integers n:
     2^0 + 2^1 + ... + 2^n = 2^(n+1) - 1
 
 We write:
-    LHS(n) = ?
-    RHS(n) = ?
+    LHS(n) = 2^0 + 2^1 + ... + 2^n
+    RHS(n) = 2^(n+1) - 1
 
 To prove that P(n) holds for some nonnegative integer n, we must
 show ?.
 
 Prove using mathematical induction.
+
+Base case. We must prove P(n) holds for the smallest n in our domain, which is
+n = 0. We have that LHS(0) = 2^0 = 1, RHS(0) = 2^(0+1) - 1 = 2 - 1 = 1. So
+LHS(0) = RHS(0) = 1, and the base case holds.
+
+Inductive step. We assume the inductive hypothesis -- that P(k) holds for some
+nonnegative integer k. We must show that P(k+1) holds. Since P(k) holds, we have
+that LHS(k) = RHS(k).
+We have:
+    Lhs(k+1) = LHS(k) + 2^(k+1)
+    =RHS(k) = 2^(k+1)
+    =2^(k+1) - 1 + 2^(k+1)
+    =2*2^(k+1) - 1
+    =2^((k+1)+1) - 1
+    =RHS(k+1)
+So, LHS(k+1) = RHS(k+1), the inductive step holds.
 
 ////////////////////////////////
 
@@ -140,6 +170,9 @@ f(n) = 2f(n-1) + 3, for n > 1
 
 
 What is f(3)?
+    f(3) = 2(f(2)) + 3 = 2(9) + 3 = 21
+    f(2) = 2(f(1)) + 3
+         = 2(3) + 3 = 9
 
 
 
@@ -151,6 +184,11 @@ What does this define?
 g(1) = 1
 g(n) = n * g(n-1), for n > 1
 
+n | g(n)
+-----------
+1 | 1
+2 | 2*g(1) = 2
+3 | 3*g(2) = 6
 
 
 //////////////////////////////////
@@ -159,6 +197,8 @@ Consider this pattern: 1, 2, 4, 7, 11, 16, 22, ...
 
 Write a recursive definition.
 
+f(1) = 1
+f(n) = f(n-1) + n-1, for n > 1
 
 
 ////////////////////////////////
@@ -174,11 +214,14 @@ Recursive case: x ∈ S ⋀ y ∈ S → xy ∈ S
 
 --> what are the elements in S?
 
+S = {1, 2, 4, 8, 16, ...}
 
+all powers of 2
 
 How to write it in set building notation?
 
-
+{x : x = 2^k, k ∈ Z, 0 <= k}
+[=0/\0=]
 
 
 ////////////////////////////////
@@ -242,16 +285,23 @@ Example: prove that the product of two even integers is even.
 If our domain is integers and we have the predicate Even(x), how
 would you write this statement in predicate logic?
 
-
+A x A y (Even(x) ^ Even(y) __>: Even(xy))
 
 What's the idea of proving this in predicate logic?
 
-
+Pick random j and k
+assume j and k are even
+want even(jk)
 
 
 Direct proof:
 
-
+let j and k be even integers. We want to show that jk is even.
+If j is even, then j = 2a for some integer a. If k is even,
+then k = 2b for some integer b. We have that
+    jk = (2a)(2b)
+       = 2(2ab)
+Thus, jk is even by definition, since jk is two times the integer 2ab
 
 --> How is our proof similar to natural deduction?
 
